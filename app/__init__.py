@@ -24,6 +24,9 @@ def create_app(config_class=Config):
     cors.init_app(app=app)
     swag.init_app(app=app)
 
+    from home.routes import home_bp
+    app.register_blueprint(home_bp)
+
     return app
 
 
