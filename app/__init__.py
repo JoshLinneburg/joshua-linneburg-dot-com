@@ -1,5 +1,5 @@
 from flask import Flask
-from errors.handlers import jwt
+# from errors.handlers import jwt
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_login import LoginManager
@@ -23,7 +23,7 @@ def create_app(config_class=Config):
     ma.init_app(app=app)
     login.init_app(app=app)
     migrate.init_app(app=app, db=db)
-    jwt.init_app(app=app)
+    # jwt.init_app(app=app)
     cors.init_app(app=app)
     swag.init_app(app=app)
 
