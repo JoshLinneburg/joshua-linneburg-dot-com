@@ -17,8 +17,6 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(50), unique=True)
     phone_nbr = db.Column(db.String(15), unique=True)
     password_hash = db.Column(db.String(128), nullable=False)
-    posts = db.relationship("Post", backref="author", lazy="dynamic")
-    comments = db.relationship("Comment", backref="author", lazy="dynamic")
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
     modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -53,8 +51,8 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(128), unique=True)
     body = db.Column(db.Text)
+    author = db.relationship("User", backref="posts", lazy="dynamic")
     comments = db.relationship("Comment", backref="post", lazy="dynamic")
-    tags = db.relationship("PostTag", backref="post", lazy="dynamic")
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
     modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -70,6 +68,8 @@ class Tag(db.Model):
 class PostTag(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), primary_key=True)
     tag_id = db.Column(db.Integer, db.ForeignKey("tag.id", ondelete="CASCADE"), primary_key=True)
+    posts = db.relationship("Post", backref="post_tag", lazy="dynamic")
+    tags = db.relationship("Tag", backref="post_tag", lazy="dynamic")
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
     modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -77,6 +77,7 @@ class PostTag(db.Model):
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(128), unique=True)
+    author = db.relationship("User", backref="comments", lazy="dynamic")
     body = db.Column(db.Text)
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
     modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
