@@ -54,6 +54,22 @@ class Post(db.Model):
     public_id = db.Column(db.String(128), unique=True)
     body = db.Column(db.Text)
     comments = db.relationship("Comment", backref="post", lazy="dynamic")
+    tags = db.relationship("PostTag", backref="post", lazy="dynamic")
+    created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
+    modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    public_id = db.Column(db.String(128), unique=True)
+    tag_name = db.Column(db.String(64), unique=True)
+    created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
+    modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
+class PostTag(db.Model):
+    post_id = db.Column(db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey("tag.id", ondelete="CASCADE"), primary_key=True)
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
     modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
