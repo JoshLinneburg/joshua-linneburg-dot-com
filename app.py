@@ -1,6 +1,6 @@
 from flask.cli import FlaskGroup
-from app import create_app, db
-from app.models import User, Post, Comment, Tag, PostTag
+from flask_app import create_app, db
+from flask_app.models import User, Post, Comment, Tag, PostTag
 
 app = create_app()
 cli = FlaskGroup(app)

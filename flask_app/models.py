@@ -3,7 +3,7 @@ import json
 import jwt
 import os
 
-from app import db, login
+from flask_app import db, login
 from datetime import datetime, timedelta
 from flask import current_app, url_for
 from flask_login import UserMixin

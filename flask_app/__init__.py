@@ -33,4 +33,4 @@ def create_app(config_class=Config):
     return app
 
 
-from app.models import *
+from flask_app.models import *
