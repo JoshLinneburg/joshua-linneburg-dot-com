@@ -10,7 +10,7 @@ from flasgger import Swagger
 
 db = SQLAlchemy()
 ma = Marshmallow()
-login = LoginManager()
+# login = LoginManager()
 migrate = Migrate()
 cors = CORS()
 swag = Swagger()
@@ -21,7 +21,7 @@ def create_app(config_class=Config):
     app.config.from_object(config_class)
     db.init_app(app=app)
     ma.init_app(app=app)
-    login.init_app(app=app)
+    # login.init_app(app=app)
     migrate.init_app(app=app, db=db)
     # jwt.init_app(app=app)
     cors.init_app(app=app)
@@ -29,6 +29,9 @@ def create_app(config_class=Config):
 
     from .home.routes import home_bp
     app.register_blueprint(home_bp)
+
+    from .posts.routes import post_bp
+    app.register_blueprint(post_bp)
 
     return app
 
