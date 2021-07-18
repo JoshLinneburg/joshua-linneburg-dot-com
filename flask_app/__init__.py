@@ -6,7 +6,6 @@ from flask_login import LoginManager
 from flaskext.markdown import Markdown
 import markdown.extensions.fenced_code
 from flask_sqlalchemy import SQLAlchemy
-
 from config import Config
 from flasgger import Swagger
 
