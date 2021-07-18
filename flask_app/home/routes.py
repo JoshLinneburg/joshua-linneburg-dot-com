@@ -4,6 +4,15 @@ home_bp = Blueprint("home_bp", __name__)
 
 
 @home_bp.route("/")
-@home_bp.route("/home")
-def homepage():
+def home():
     return render_template("index.html")
+
+
+@home_bp.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@home_bp.route("/contact")
+def contact():
+    return render_template("contact.html")
