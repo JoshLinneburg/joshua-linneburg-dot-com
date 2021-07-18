@@ -52,6 +52,8 @@ class User(UserMixin, db.Model):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(128), unique=True)
+    title = db.Column(db.String(128))
+    subtitle = db.Column(db.String(128))
     body = db.Column(db.Text)
     author_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     comments = db.relationship("Comment", backref="post", lazy="dynamic")
