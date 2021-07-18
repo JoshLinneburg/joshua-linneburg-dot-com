@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'navbar.html' %}
+{% for post in posts %}
+<div><p>{{ post.title }}</p></div>
+{% endfor %}
+</html>

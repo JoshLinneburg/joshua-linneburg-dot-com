@@ -3,13 +3,14 @@ from flask import Flask
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_login import LoginManager
+from flaskext.markdown import Markdown
+import markdown.extensions.fenced_code
 from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
+
 from config import Config
 from flasgger import Swagger
 
 db = SQLAlchemy()
-ma = Marshmallow()
 # login = LoginManager()
 migrate = Migrate()
 cors = CORS()
@@ -20,8 +21,8 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
     db.init_app(app=app)
-    ma.init_app(app=app)
     # login.init_app(app=app)
+    md = Markdown(app=app, auto_escape=True, extensions=["fenced_code"])
     migrate.init_app(app=app, db=db)
     # jwt.init_app(app=app)
     cors.init_app(app=app)
