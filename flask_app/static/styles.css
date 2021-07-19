@@ -10751,8 +10751,9 @@ header.masthead .post-heading .meta a {
 }
 @media (min-width: 992px) {
   header.masthead {
-    padding-top: 7.5rem;
-    padding-bottom: 7.5rem;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    max-height: 500px;
   }
   header.masthead .page-heading h1, header.masthead .page-heading .h1,
 header.masthead .site-heading h1,
