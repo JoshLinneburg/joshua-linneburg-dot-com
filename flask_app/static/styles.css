@@ -10692,6 +10692,7 @@ header.masthead {
   background-color: #6c757d;
   background-size: cover;
   background-attachment: scroll;
+  height: 425px;
 }
 header.masthead:before {
   content: "";
@@ -10753,7 +10754,6 @@ header.masthead .post-heading .meta a {
   header.masthead {
     padding-top: 7rem;
     padding-bottom: 7rem;
-    max-height: 500px;
   }
   header.masthead .page-heading h1, header.masthead .page-heading .h1,
 header.masthead .site-heading h1,
