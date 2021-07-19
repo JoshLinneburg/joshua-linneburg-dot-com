@@ -12,3 +12,4 @@ class Config(object):
     LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
     LANGUAGES = ['en', 'es']
     POSTS_PER_PAGE = 25
+    SQLALCHEMY_ECHO = True

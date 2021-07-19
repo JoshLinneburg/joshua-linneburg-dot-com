@@ -1,13 +1,15 @@
+import markdown.extensions.fenced_code
+
 from flask import Flask
 # from errors.handlers import jwt
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_login import LoginManager
 from flaskext.markdown import Markdown
-import markdown.extensions.fenced_code
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from flasgger import Swagger
+from flask_app.utils import datetime_filter
 
 db = SQLAlchemy()
 # login = LoginManager()
@@ -32,6 +34,8 @@ def create_app(config_class=Config):
 
     from .posts.routes import post_bp
     app.register_blueprint(post_bp)
+
+    app.jinja_env.filters["datetime_filter"] = datetime_filter
 
     return app
 
