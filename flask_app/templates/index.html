@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block content %}
 <body>
+{% block content %}
     <!-- Page Header-->
     <header class="masthead" style="background-image: url('{{ url_for('static', filename='home-bg.jpg') }}')">
         <div class="container position-relative px-4 px-lg-5">
@@ -16,5 +16,5 @@
     </header>
     <!-- Main Content-->
     {% include 'posts/post_directory.html' %}
-</body>
 {% endblock %}
+</body>
