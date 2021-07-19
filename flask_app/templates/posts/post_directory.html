@@ -13,7 +13,7 @@
                         </a>
                         <p class="post-meta">
                             Posted by
-                            <a href="{{ url_for('home_bp.get_user', public_user_id=post.author.public_id) }}">
+                            <a href="{{ url_for('user_bp.get_user', public_user_id=post.author.public_id) }}">
                             {{ post.author.username }}
                             </a>
                             on {{ post.created_datetime|datetime_filter("%B %d, %Y") }}

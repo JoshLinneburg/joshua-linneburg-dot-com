@@ -18,13 +18,3 @@ def about():
 @home_bp.route("/contact")
 def contact():
     return render_template("contact.html")
-
-
-@home_bp.route("/user/<string:public_user_id>")
-def get_user(public_user_id):
-    user = User.query.filter_by(public_id=public_user_id).one()
-
-    if not user:
-        return redirect(url_for('home_bp.home'))
-
-    return render_template('user_profile.html', user=user)
