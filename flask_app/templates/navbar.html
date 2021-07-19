@@ -21,6 +21,12 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('home_bp.home') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('home_bp.about') }}">About</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('home_bp.contact') }}">Contact</a></li>
+                        {% if current_user.is_anonymous %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('auth_bp.login') }}">Login</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('home_bp.get_user', public_user_id=current_user.public_id) }}">My Profile</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ url_for('auth_bp.logout') }}">Logout</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

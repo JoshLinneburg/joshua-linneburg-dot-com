@@ -1,6 +1,7 @@
 import markdown.extensions.fenced_code
 
 from flask import Flask
+from flask_bootstrap import Bootstrap
 # from errors.handlers import jwt
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -11,8 +12,9 @@ from config import Config
 from flasgger import Swagger
 from flask_app.utils import datetime_filter
 
+bootstrap = Bootstrap()
 db = SQLAlchemy()
-# login = LoginManager()
+login = LoginManager()
 migrate = Migrate()
 cors = CORS()
 swag = Swagger()
@@ -21,8 +23,9 @@ swag = Swagger()
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    bootstrap.init_app(app=app)
     db.init_app(app=app)
-    # login.init_app(app=app)
+    login.init_app(app=app)
     md = Markdown(app=app, auto_escape=True, extensions=["fenced_code"])
     migrate.init_app(app=app, db=db)
     # jwt.init_app(app=app)
@@ -34,6 +37,9 @@ def create_app(config_class=Config):
 
     from .posts.routes import post_bp
     app.register_blueprint(post_bp)
+
+    from .auth.routes import auth_bp
+    app.register_blueprint(auth_bp)
 
     app.jinja_env.filters["datetime_filter"] = datetime_filter
 

@@ -3,11 +3,16 @@ import json
 import jwt
 import os
 
-from flask_app import db
+from flask_app import db, login
 from datetime import datetime, timedelta
 from flask import current_app, url_for
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 
 class User(UserMixin, db.Model):

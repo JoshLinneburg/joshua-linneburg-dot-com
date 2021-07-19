@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template
-from flask_app.models import Post
+from flask import Blueprint, render_template, redirect, url_for
+from flask_app.models import Post, User
 
 home_bp = Blueprint("home_bp", __name__)
 
@@ -18,3 +18,13 @@ def about():
 @home_bp.route("/contact")
 def contact():
     return render_template("contact.html")
+
+
+@home_bp.route("/user/<string:public_user_id>")
+def get_user(public_user_id):
+    user = User.query.filter_by(public_id=public_user_id).one()
+
+    if not user:
+        return redirect(url_for('home_bp.home'))
+
+    return render_template('user_profile.html', user=user)

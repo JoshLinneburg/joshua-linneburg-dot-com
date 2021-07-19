@@ -10,14 +10,14 @@ post_bp = Blueprint("post_bp", __name__)
 def get_all_posts():
     posts = Post.query.order_by(Post.created_datetime.desc()).all()
 
-    return render_template("post_directory.html", posts=posts)
+    return render_template("posts/post_directory.html", posts=posts)
 
 
 @post_bp.route('/post/<string:post_public_id>')
 def get_post(post_public_id):
     post = Post.query.filter_by(public_id=post_public_id).one()
 
-    return render_template('post.html', post=post)
+    return render_template('posts/post.html', post=post)
 
 
 @post_bp.route("/post", methods=["POST"])
