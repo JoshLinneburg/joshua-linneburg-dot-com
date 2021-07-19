@@ -24,7 +24,10 @@
                             <h3 class="post-subtitle">{{ post.subtitle }}</h3>
                         </a>
                         <p class="post-meta">
-                            Posted by {{ post.author.username }}
+                            Posted by
+                            <a href="{{ url_for('home_bp.get_user', public_user_id=post.author.public_id) }}">
+                            {{ post.author.username }}
+                            </a>
                             on {{ post.created_datetime|datetime_filter("%B %d, %Y") }}
                             at {{ post.created_datetime|datetime_filter("%I:%M %p") }}
                         </p>
