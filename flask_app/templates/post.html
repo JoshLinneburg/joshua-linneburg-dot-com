@@ -14,6 +14,8 @@
                             <h1>{{ post.title }}</h1>
                             <h2 class="subheading">{{ post.subtitle }}</h2>
                             <span class="meta">Posted by {{ post.author.username }}
+                            on {{ post.created_datetime|datetime_filter("%B %d, %Y") }}
+                            at {{ post.created_datetime|datetime_filter("%I:%M %p") }}
                             </span>
                         </div>
                     </div>
