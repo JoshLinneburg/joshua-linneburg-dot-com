@@ -55,6 +55,15 @@ class User(UserMixin, db.Model):
         return result
 
 
+PostTag = db.Table(
+    "post_tag",
+    db.Column("post_id", db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), primary_key=True),
+    db.Column("tag_id", db.Integer, db.ForeignKey("tag.id", ondelete="CASCADE"), primary_key=True),
+    db.Column("created_datetime", db.DateTime, default=datetime.utcnow),
+    db.Column("modified_datetime", db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+)
+
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(128), unique=True)
@@ -64,6 +73,7 @@ class Post(db.Model):
     body = db.Column(db.Text)
     author_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     comments = db.relationship("Comment", backref="post", lazy="dynamic")
+    tags = db.relationship("Tag", secondary=PostTag, lazy="subquery", backref=db.backref("posts", lazy=True))
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
     modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -72,13 +82,6 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(128), unique=True)
     tag_name = db.Column(db.String(64), unique=True)
-    created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
-    modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-
-class PostTag(db.Model):
-    post_id = db.Column(db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), primary_key=True)
-    tag_id = db.Column(db.Integer, db.ForeignKey("tag.id", ondelete="CASCADE"), primary_key=True)
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
     modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
