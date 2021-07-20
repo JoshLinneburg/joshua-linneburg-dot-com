@@ -49,4 +49,4 @@ def get_posts_by_tag(tag_public_id):
 
     posts = Post.query.join(PostTag).filter_by(tag_id=tag.id).all()
 
-    return render_template('posts/post_directory.html', posts=posts)
+    return render_template('posts/post_directory_page.html', posts=posts, tag=tag)

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='home-bg.jpg') }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Posts Tagged "{{ tag.tag_name }}"</h1>
+                    <span class="subheading">[Insert Clever Subtitle Here]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% include 'posts/post_directory_component.html' %}
+{% endblock %}
