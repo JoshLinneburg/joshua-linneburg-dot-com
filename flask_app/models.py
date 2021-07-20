@@ -73,7 +73,7 @@ class Post(db.Model):
     body = db.Column(db.Text)
     author_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     comments = db.relationship("Comment", backref="post", lazy="dynamic")
-    tags = db.relationship("Tag", secondary=PostTag, lazy="subquery", backref=db.backref("posts", lazy=True))
+    tags = db.relationship("Tag", secondary=PostTag, lazy="subquery", backref=db.backref("posts"))
     created_datetime = db.Column(db.DateTime, default=datetime.utcnow)
     modified_datetime = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 

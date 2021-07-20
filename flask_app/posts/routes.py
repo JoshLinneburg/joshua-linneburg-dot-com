@@ -1,6 +1,6 @@
 import uuid
 from flask import Blueprint, render_template, request
-from flask_app.models import Post
+from flask_app.models import Post, PostTag
 from flask_app import db
 
 post_bp = Blueprint("post_bp", __name__)
@@ -40,3 +40,11 @@ def add_post():
         "status_code": 201,
         "status_text": "OK!"
     }
+
+
+@post_bp.route('/tag/<string:tag_id>')
+def get_posts_by_tag(tag_id):
+
+    posts = Post.query.join(PostTag).filter_by(tag_id=tag_id).all()
+
+    return render_template('posts/post_directory.html', posts=posts)
