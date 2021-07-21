@@ -10841,3 +10841,7 @@ li.post-tag-item:hover {
   background-color: #cfd0d1;
   cursor: pointer;
 }
+
+.col-md-10>p>img {
+  max-width: 768px;
+}
