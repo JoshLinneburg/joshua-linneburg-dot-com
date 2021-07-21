@@ -10820,3 +10820,24 @@ header.masthead .site-heading .h1 {
 .btn-default {
   background-color: var(--bs-cyan);
 }
+
+.post-tag-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+li.post-tag-item {
+  margin: 0 8px 0 0;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 9999px;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+li.post-tag-item:hover {
+  background-color: #cfd0d1;
+  cursor: pointer;
+}
