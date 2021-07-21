@@ -10843,5 +10843,7 @@ li.post-tag-item:hover {
 }
 
 .col-md-10>p>img {
-  max-width: 768px;
+    max-width: 90%
 }
+
+
