@@ -44,14 +44,9 @@ def add_post():
             "status_text": "NOT OK!"
         }
 
+    new_post.tags = tags
+
     db.session.add(new_post)
-    db.session.flush()
-
-    for tag in tags:
-        new_post_tag = PostTag(post_id=new_post.id, tag_id=tag.id)
-        db.session.add(new_post_tag)
-        db.session.flush()
-
     db.session.commit()
 
     return {
