@@ -29,10 +29,29 @@ def add_post():
         title=data["title"],
         subtitle=data["subtitle"],
         body=data["body"],
-        author_id=data["author_id"]
+        author_id=data["author_id"],
+        banner_picture_path=data["banner_picture_path"],
     )
 
+    try:
+        tags = []
+        for tag in data["tags"]:
+            tags.append(Tag.query.filter_by(tag_name=tag).one())
+    except:
+        return {
+            "message": f"Could not find tag: {tag}",
+            "status_code": 400,
+            "status_text": "NOT OK!"
+        }
+
     db.session.add(new_post)
+    db.session.flush()
+
+    for tag in tags:
+        new_post_tag = PostTag(post_id=new_post.id, tag_id=tag.id)
+        db.session.add(new_post_tag)
+        db.session.flush()
+
     db.session.commit()
 
     return {
