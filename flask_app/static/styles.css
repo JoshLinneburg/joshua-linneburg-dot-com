@@ -10830,6 +10830,10 @@ header.masthead .site-heading .h1 {
   align-items: center;
 }
 
+.form-container>.row {
+    min-width: 200px;
+    width: 25%;
+}
 
 .post-tag-list {
   list-style: none;
@@ -10854,11 +10858,6 @@ li.post-tag-item:hover {
 
 .post-inline-image>img {
     max-width: 90%
-}
-
-.form-container>.row {
-    min-width: 200px;
-    width: 25%;
 }
 
 pre { line-height: 125%; }
