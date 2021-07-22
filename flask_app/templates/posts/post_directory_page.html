@@ -6,7 +6,11 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
+                    {% if tag %}
                     <h1>Posts Tagged "{{ tag.tag_name }}"</h1>
+                    {% else %}
+                    <h1>All Posts</h1>
+                    {% endif %}
                     <span class="subheading">I Stole This Bootstrap Theme From a Tutorial</span>
                 </div>
             </div>

@@ -1,16 +1,29 @@
-{% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
-
-{% block content %}
-<h1>{{ 'Sign In' }}</h1>
-<div class="row">
-    <div class="col-md-4">
-        {{ wtf.quick_form(form) }}
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block content %}
+<body>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='home-bg.jpg') }}')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1>Login</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block form %}
+    <h1>{{ 'Sign In' }}</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
     </div>
-</div>
-<p>{{ 'New User?' }} <a href="{{ url_for('auth_bp.register') }}">{{ 'Click to Register!' }}</a></p>
-<p>
-    {{ 'Forgot Your Password?' }}
-    <a href="{{ url_for('home_bp.home') }}">{{ ('Click to Reset It') }}</a>
-</p>
+    <p>{{ 'New User?' }} <a href="{{ url_for('auth_bp.register') }}">{{ 'Click to Register!' }}</a></p>
+    <p>
+        {{ 'Forgot Your Password?' }}
+        <a href="{{ url_for('home_bp.home') }}">{{ ('Click to Reset It') }}</a>
+    </p>
+    {% endblock %}
+</body>
 {% endblock %}
