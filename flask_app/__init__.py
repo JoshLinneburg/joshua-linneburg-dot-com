@@ -10,7 +10,7 @@ from flaskext.markdown import Markdown
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from flasgger import Swagger
-from flask_app.utils import datetime_filter
+from flask_app.utils import datetime_filter, render_markdown
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
@@ -26,7 +26,7 @@ def create_app(config_class=Config):
     bootstrap.init_app(app=app)
     db.init_app(app=app)
     login.init_app(app=app)
-    md = Markdown(app=app, auto_escape=True, extensions=["fenced_code"])
+    md = Markdown(app=app, auto_escape=True, extensions=["fenced_code", "codehilite"], output_format="html5")
     migrate.init_app(app=app, db=db)
     # jwt.init_app(app=app)
     cors.init_app(app=app)
@@ -45,6 +45,7 @@ def create_app(config_class=Config):
     app.register_blueprint(user_bp)
 
     app.jinja_env.filters["datetime_filter"] = datetime_filter
+    app.jinja_env.filters["render_markdown"] = render_markdown
 
     return app
 
