@@ -12,18 +12,18 @@
             </div>
         </div>
     </header>
+    <div class="form-container">
     {% block form %}
     <h1>{{ 'Sign In' }}</h1>
     <div class="row">
-        <div class="col-md-4">
-            {{ wtf.quick_form(form) }}
-        </div>
+        {{ wtf.quick_form(form) }}
     </div>
     <p>{{ 'New User?' }} <a href="{{ url_for('auth_bp.register') }}">{{ 'Click to Register!' }}</a></p>
     <p>
         {{ 'Forgot Your Password?' }}
         <a href="{{ url_for('home_bp.home') }}">{{ ('Click to Reset It') }}</a>
     </p>
+    </div>
     {% endblock %}
 </body>
 {% endblock %}

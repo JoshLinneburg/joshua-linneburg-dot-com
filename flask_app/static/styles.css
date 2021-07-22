@@ -10818,8 +10818,18 @@ header.masthead .site-heading .h1 {
 }
 
 .btn-default {
-  background-color: var(--bs-cyan);
+  background-color: #59afc2;
+  color: white;
+  margin: 5px;
 }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
 .post-tag-list {
   list-style: none;
@@ -10844,6 +10854,11 @@ li.post-tag-item:hover {
 
 .post-inline-image>img {
     max-width: 90%
+}
+
+.form-container>.row {
+    min-width: 200px;
+    width: 25%;
 }
 
 pre { line-height: 125%; }
